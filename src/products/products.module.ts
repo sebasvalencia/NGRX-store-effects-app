@@ -13,6 +13,11 @@ import * as fromContainers from './containers';
 // services
 import * as fromServices from './services';
 
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store';
+
+
+
 // routes
 export const ROUTES: Routes = [
   {
@@ -35,6 +40,7 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild(ROUTES),
+    StoreModule.forFeature('products', reducers) //lazyLoaded module
   ],
   providers: [...fromServices.services],
   declarations: [...fromContainers.containers, ...fromComponents.components],
