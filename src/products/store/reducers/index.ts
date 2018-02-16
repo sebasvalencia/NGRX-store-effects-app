@@ -1,6 +1,6 @@
 //contiene todos los reducers
 
-import { ActionReducerMap } from "@ngrx/store";
+import { ActionReducerMap, createSelector, createFeatureSelector } from "@ngrx/store";
 
 import * as fromPizzas from "./pizzas.reducer";
 
@@ -14,4 +14,8 @@ export const reducers: ActionReducerMap<ProductsState> = {
     pizzas: fromPizzas.reducer
 }
 
+//crear base level 
+export const getProductsState = createFeatureSelector<ProductsState>('products');
 
+//pizzas state
+export const getPizzaState = createSelector(getProductsState, (state:ProductsState) => state.pizzas);
